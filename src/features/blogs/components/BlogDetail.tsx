@@ -1,3 +1,4 @@
+import { formatDate } from "@/lib/date";
 import { useBlog } from "../hooks/useBlog";
 import BlogDetailSkeleton from "./BlogDetailSkeleton";
 
@@ -20,7 +21,7 @@ export default function BlogDetail({ blogId }: BlogDetailProps) {
   if (!data) return null;
 
   return (
-    <article className="space-y-6 max-w-3xl">
+    <article className="space-y-6 max-w-6xl">
       <img
         src={data.coverImage}
         alt={data.title}
@@ -29,12 +30,17 @@ export default function BlogDetail({ blogId }: BlogDetailProps) {
 
       <h1 className="text-2xl font-bold">{data.title}</h1>
 
-      <div className="flex gap-2 text-xs text-gray-500">
+      {/* Categories + Date */}
+      <div className="flex flex-wrap items-center gap-3 text-sm font-semibold text-gray-500">
         {data.category.map((cat) => (
           <span key={cat}>{cat}</span>
         ))}
+        <span className="text-gray-400">•</span>
+        <span>{formatDate(data.date)}</span>
       </div>
-
+        <h4 className="mt-1 font-extrabold text-gray-800 line-clamp-2 text-sm">
+        {data.description}
+      </h4>
       <p className="text-gray-700 whitespace-pre-line">
         {data.content}
       </p>

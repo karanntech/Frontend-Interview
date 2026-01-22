@@ -1,4 +1,5 @@
-import type { Blog } from "../../types";
+import { timeAgo } from "@/lib/date";
+import type { Blog } from "@/features/types";
 
 interface BlogCardProps {
   blog: Blog;
@@ -6,22 +7,23 @@ interface BlogCardProps {
   isActive: boolean;
 }
 
-export default function BlogCard({
-  blog,
-  onSelect,
-  isActive,
-}: BlogCardProps) {
+export default function BlogCard({ blog, onSelect, isActive }: BlogCardProps) {
   return (
     <button
       onClick={() => onSelect(blog.id)}
-      className={`w-full text-left rounded-lg border p-4 transition ${
+      className={`w-full text-left rounded-lg border p-4 transition cursor-pointer ${
         isActive ? "bg-gray-100 border-gray-400" : "hover:bg-gray-50"
       }`}
     >
-      <div className="mb-1 flex flex-wrap gap-2 text-xs text-gray-500">
-        {blog.category.map((cat) => (
-          <span key={cat}>{cat}</span>
-        ))}
+      {/* Category + Date row */}
+      <div className="mb-1 flex items-center justify-between text-xs text-gray-500 font-semibold">
+        <div className="flex flex-wrap gap-2">
+          {blog.category.map((cat) => (
+            <span key={cat}>{cat}</span>
+          ))}
+        </div>
+
+        <span className="whitespace-nowrap">{timeAgo(blog.date)}</span>
       </div>
 
       <h3 className="font-semibold text-sm">{blog.title}</h3>

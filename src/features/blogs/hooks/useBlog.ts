@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createBlog, getBlogById, getBlogs } from "../api/blogApi";
-import type { Blog, CreateBlogPayload } from "../../types";
+import type { Blog, CreateBlogPayload } from "@/features/types";
 
 export const BLOGS_QUERY_KEY = ["blogs"];
 

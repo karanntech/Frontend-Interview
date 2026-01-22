@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useCreateBlog } from "../hooks/useBlog";
-import type { CreateBlogPayload } from "../../types";
+import type { CreateBlogPayload } from "@/features/types";
 
 const initialState: CreateBlogPayload = {
   title: "",
@@ -93,7 +93,7 @@ export default function CreateBlogForm() {
         <button
           type="button"
           onClick={handleAddCategory}
-          className="rounded border px-3 py-2 text-sm hover:bg-gray-50"
+          className="rounded border px-3 py-2 text-sm cursor-pointer hover:bg-gray-50"
         >
           Add
         </button>
@@ -126,7 +126,7 @@ export default function CreateBlogForm() {
       <button
         type="submit"
         disabled={isPending}
-        className="rounded bg-black px-4 py-2 text-sm text-white disabled:opacity-50"
+        className="rounded bg-black px-4 py-2 text-sm text-white disabled:opacity-50 cursor-pointer"
       >
         {isPending ? "Publishing..." : "Publish Blog"}
       </button>
